@@ -1,0 +1,14 @@
+C:\Repo\tictactoe.api\tictactoe.api\bin\Debug\netcoreapp2.2\tictactoe.api.deps.json
+C:\Repo\tictactoe.api\tictactoe.api\bin\Debug\netcoreapp2.2\tictactoe.api.runtimeconfig.json
+C:\Repo\tictactoe.api\tictactoe.api\bin\Debug\netcoreapp2.2\tictactoe.api.runtimeconfig.dev.json
+C:\Repo\tictactoe.api\tictactoe.api\bin\Debug\netcoreapp2.2\tictactoe.api.dll
+C:\Repo\tictactoe.api\tictactoe.api\bin\Debug\netcoreapp2.2\tictactoe.api.pdb
+C:\Repo\tictactoe.api\tictactoe.api\obj\Debug\netcoreapp2.2\tictactoe.api.csprojAssemblyReference.cache
+C:\Repo\tictactoe.api\tictactoe.api\obj\Debug\netcoreapp2.2\tictactoe.api.csproj.CoreCompileInputs.cache
+C:\Repo\tictactoe.api\tictactoe.api\obj\Debug\netcoreapp2.2\tictactoe.api.RazorAssemblyInfo.cache
+C:\Repo\tictactoe.api\tictactoe.api\obj\Debug\netcoreapp2.2\tictactoe.api.RazorAssemblyInfo.cs
+C:\Repo\tictactoe.api\tictactoe.api\obj\Debug\netcoreapp2.2\tictactoe.api.AssemblyInfoInputs.cache
+C:\Repo\tictactoe.api\tictactoe.api\obj\Debug\netcoreapp2.2\tictactoe.api.AssemblyInfo.cs
+C:\Repo\tictactoe.api\tictactoe.api\obj\Debug\netcoreapp2.2\tictactoe.api.RazorTargetAssemblyInfo.cache
+C:\Repo\tictactoe.api\tictactoe.api\obj\Debug\netcoreapp2.2\tictactoe.api.dll
+C:\Repo\tictactoe.api\tictactoe.api\obj\Debug\netcoreapp2.2\tictactoe.api.pdb
