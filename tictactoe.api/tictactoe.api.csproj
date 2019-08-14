@@ -8,10 +8,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+    
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\tictactoe.api.dataaccess\tictactoe.api.dataaccess.csproj" />
+
   </ItemGroup>
 
 </Project>
