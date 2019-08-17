@@ -1,17 +1,20 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using tictactoe.api.dataaccess;
+using tictactoe.api.dataaccess.models;
 
 namespace tictactoe.api.Controllers
 {
-    using tictactoe.api.dataaccess.models;
-
     [Route("api/[controller]")]
     [ApiController]
-    public class GameResultsController
+    public class GameResultsController : ControllerBase
     {
+        private readonly DbEntities _entities;
+        public GameResultsController(DbEntities entities)
+        {
+            _entities = entities;
+        }
+
         [HttpGet]
         public JsonResult Get(string playerName)
         {
