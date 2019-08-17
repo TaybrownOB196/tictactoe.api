@@ -1,9 +1,8 @@
 using System.Linq;
 using System.Collections.Generic;
 using tictactoe.api.dataaccess.models;
-using tictactoe.api.dataaccess.providers;
 
-namespace tictactoe.api.dataaccess 
+namespace tictactoe.api.dataaccess.providers
 {
     public class GameResultsProvider : IEntityProvider<GameResult>
     {
