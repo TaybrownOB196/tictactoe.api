@@ -18,7 +18,7 @@ namespace tictactoe.api.Controllers
         [HttpGet]
         public JsonResult Get(string playerName)
         {
-            var results = new List<GameResult> { GameResult.getDummy() };
+            var results = _provider.Entities();
             return new JsonResult(results);
         }
 
