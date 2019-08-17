@@ -25,6 +25,7 @@ namespace tictactoe.api.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] GameResult gameResult)
         {
+            _provider.AddEntity(gameResult);
             return new OkResult();
         }
     }
