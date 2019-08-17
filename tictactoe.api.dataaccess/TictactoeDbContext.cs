@@ -3,9 +3,9 @@ using tictactoe.api.dataaccess.models;
 
 namespace tictactoe.api.dataaccess
 {
-    public class DbEntities : DbContext
+    public class TictactoeDbContext : DbContext
     {
-        public DbEntities(DbContextOptions<DbEntities> options)
+        public TictactoeDbContext(DbContextOptions<TictactoeDbContext> options)
             : base(options) { }
 
         public DbSet<GameResult> GameResults { get; set; }
