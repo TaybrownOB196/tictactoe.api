@@ -12,10 +12,11 @@ namespace tictactoe.api.dataaccess.providers
             _db = dbContext;
         } 
 
-        public void AddEntity(Player entity)
+        public Player AddEntity(Player entity)
         {
-            _db.Players.Add(entity);
+            var player = _db.Players.Add(entity);
             _db.SaveChanges();
+            return player.Entity;
         }
 
         public IEnumerable<Player> Entities()
