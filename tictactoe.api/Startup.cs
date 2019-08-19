@@ -27,10 +27,9 @@ namespace tictactoe.api
                 options.AddPolicy("policy_one", 
                 builder => {
                     builder
-                        //.WithOrigins("http://localhost:8989")
-                        .AllowAnyOrigin()
-                        //.WithOrigins("https://localhost")
-                        ;
+                        .WithOrigins("http://localhost:8989")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                 });
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -54,7 +53,7 @@ namespace tictactoe.api
                 app.UseHsts();
             }
 
-            app.UseCors();
+            app.UseCors("policy_one");
             app.UseMvc();
         }
     }
