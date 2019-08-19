@@ -23,10 +23,20 @@ namespace tictactoe.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TictactoeDbContext>(opt => opt.UseInMemoryDatabase("TicTacToe"));
+            services.AddCors(options => {
+                options.AddPolicy("policy_one", 
+                builder => {
+                    builder
+                        //.WithOrigins("http://localhost:8989")
+                        .AllowAnyOrigin()
+                        //.WithOrigins("https://localhost")
+                        ;
+                });
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddTransient(typeof(GameResultsProvider), typeof(IEntityProvider<GameResult>));
-            services.AddTransient(typeof(GameSessionsProvider), typeof(IEntityProvider<GameSession>));
-            services.AddTransient(typeof(PlayersProvider), typeof(IEntityProvider<Player>));
+            services.AddTransient(typeof(IEntityProvider<GameResult>), typeof(GameResultsProvider));
+            services.AddTransient(typeof(IEntityProvider<GameSession>), typeof(GameSessionsProvider));
+            services.AddTransient(typeof(IEntityProvider<Player>), typeof(PlayersProvider));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +54,7 @@ namespace tictactoe.api
                 app.UseHsts();
             }
 
+            app.UseCors();
             app.UseMvc();
         }
     }
