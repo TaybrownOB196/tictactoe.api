@@ -15,10 +15,10 @@ namespace tictactoe.api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Player Player)
+        public JsonResult Post([FromBody] Player player)
         {
-            _provider.AddEntity(Player);
-            return new OkResult();
+            var responseBody = _provider.AddEntity(player);
+            return new JsonResult(responseBody);
         }
     }
 }
