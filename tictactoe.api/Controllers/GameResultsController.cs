@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using tictactoe.api.dataaccess.models;
-using tictactoe.api.dataaccess.providers;
+using tictactoe.api.dataaccess.creators;
 
 namespace tictactoe.api.Controllers
 {
@@ -9,23 +9,16 @@ namespace tictactoe.api.Controllers
     [ApiController]
     public class GameResultsController : ControllerBase
     {
-        private readonly IEntityProvider<GameResult> _provider;
-        public GameResultsController(IEntityProvider<GameResult> provider)
+        private readonly IEntityCreator<GameResult> _provider;
+        public GameResultsController(IEntityCreator<GameResult> provider)
         {
             _provider = provider;
-        }
-
-        [HttpGet]
-        public JsonResult Get(string playerName)
-        {
-            var results = _provider.Entities();
-            return new JsonResult(results);
         }
 
         [HttpPost]
         public ActionResult Post([FromBody] GameResult gameResult)
         {
-            _provider.AddEntity(gameResult);
+            _provider.Create(gameResult);
             return new OkResult();
         }
     }

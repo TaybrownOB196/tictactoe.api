@@ -2,26 +2,21 @@ using System.Linq;
 using System.Collections.Generic;
 using tictactoe.api.dataaccess.models;
 
-namespace tictactoe.api.dataaccess.providers
+namespace tictactoe.api.dataaccess.creators
 {
-    public class PlayersProvider : IEntityProvider<Player>
+    public class PlayersCreator : IEntityCreator<Player>
     {
         private readonly TictactoeDbContext _db;
-        public PlayersProvider(TictactoeDbContext dbContext)
+        public PlayersCreator(TictactoeDbContext dbContext)
         {
             _db = dbContext;
         } 
 
-        public Player AddEntity(Player entity)
+        public Player Create(Player entity)
         {
             var player = _db.Players.Add(entity);
             _db.SaveChanges();
             return player.Entity;
-        }
-
-        public IEnumerable<Player> Entities()
-        {
-            return _db.Players.Take(10);
         }
     }
 }
