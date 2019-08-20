@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using tictactoe.api.dataaccess;
 using tictactoe.api.dataaccess.providers;
 using tictactoe.api.dataaccess.models;
+using tictactoe.api.dataaccess.creators;
 
 namespace tictactoe.api
 {
@@ -34,8 +35,10 @@ namespace tictactoe.api
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient(typeof(IEntityProvider<GameResult>), typeof(GameResultsProvider));
-            services.AddTransient(typeof(IEntityProvider<GameSession>), typeof(GameSessionsProvider));
+            services.AddTransient(typeof(IEntityCreator<GameResult>), typeof(GameResultsCreator));
+
             services.AddTransient(typeof(IEntityProvider<Player>), typeof(PlayersProvider));
+            services.AddTransient(typeof(IEntityCreator<Player>), typeof(PlayersCreator));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

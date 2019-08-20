@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using tictactoe.api.dataaccess.creators;
 using tictactoe.api.dataaccess.models;
 using tictactoe.api.dataaccess.providers;
 
@@ -10,23 +10,27 @@ namespace tictactoe.api.Controllers
     public class GameResultsController : ControllerBase
     {
         private readonly IEntityProvider<GameResult> _provider;
-        public GameResultsController(IEntityProvider<GameResult> provider)
+        private readonly IEntityCreator<GameResult> _creator;
+        public GameResultsController(
+            IEntityProvider<GameResult> provider, 
+            IEntityCreator<GameResult> creator)
         {
             _provider = provider;
+            _creator = creator;
         }
 
         [HttpGet]
-        public JsonResult Get(string playerName)
+        public JsonResult Get(int playerId)
         {
-            var results = _provider.Entities();
+            var results = _provider.Entities(playerId);
             return new JsonResult(results);
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] GameResult gameResult)
+        public JsonResult Post([FromBody] GameResult gameResult)
         {
-            _provider.AddEntity(gameResult);
-            return new OkResult();
+            var responseBody = _creator.CreateEntity(gameResult);
+            return new JsonResult(responseBody);
         }
     }
 }

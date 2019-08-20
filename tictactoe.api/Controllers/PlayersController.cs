@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using tictactoe.api.dataaccess.creators;
 using tictactoe.api.dataaccess.models;
-using tictactoe.api.dataaccess.providers;
 
 namespace tictactoe.api.Controllers
 {
@@ -8,16 +8,16 @@ namespace tictactoe.api.Controllers
     [ApiController]
     public class PlayersController : ControllerBase
     {
-        private readonly IEntityProvider<Player> _provider;
-        public PlayersController(IEntityProvider<Player> provider)
+        private readonly IEntityCreator<Player> _creator;
+        public PlayersController(IEntityCreator<Player> creator)
         {
-            _provider = provider;
+            _creator = creator;
         }
 
         [HttpPost]
         public JsonResult Post([FromBody] Player player)
         {
-            var responseBody = _provider.AddEntity(player);
+            var responseBody = _creator.CreateEntity(player);
             return new JsonResult(responseBody);
         }
     }
