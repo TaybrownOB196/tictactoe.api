@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using tictactoe.api.dataaccess.creators;
+using tictactoe.api.dataaccess;
 using tictactoe.api.dataaccess.models;
-using tictactoe.api.dataaccess.creators;
 
 namespace tictactoe.api.Controllers
 {
@@ -9,28 +8,36 @@ namespace tictactoe.api.Controllers
     [ApiController]
     public class GameResultsController : ControllerBase
     {
-        private readonly IEntityCreator<GameResult> _provider;
-        public GameResultsController(IEntityCreator<GameResult> provider)
-        public GameResultsController(
-            IEntityProvider<GameResult> provider, 
-            IEntityCreator<GameResult> creator)
-        {
-            _provider = provider;
-            _creator = creator;
+        private readonly TictactoeDbContext _dbContext;
+        public GameResultsController(TictactoeDbContext dbContext) 
+        { 
+            _dbContext = dbContext;
         }
 
         [HttpGet]
-        public JsonResult Get(int playerId)
+        public ActionResult Get(int playerId)
         {
-            var results = _provider.Entities(playerId);
-            return new JsonResult(results);
+            if (playerId <= 0) {
+                return BadRequest("invalid player id");
+            }
+            using (var uow = new UnitOfWork(_dbContext)) 
+            {
+                var results = uow.GameResults.GetPlayerGameResults(playerId);
+
+                return new JsonResult(results);
+            }
         }
 
         [HttpPost]
-        public JsonResult Post([FromBody] GameResult gameResult)
+        public ActionResult Post([FromBody] GameResult gameResult)
         {
-            _provider.Create(gameResult);
-            return new JsonResult(responseBody);
+            using (var uow = new UnitOfWork(_dbContext)) 
+            {
+                var result = uow.GameResults.Add(gameResult);
+                uow.Complete();
+
+                return new JsonResult(result);
+            }
         }
     }
 }
