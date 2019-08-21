@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using tictactoe.api.dataaccess.creators;
 using tictactoe.api.dataaccess.models;
+using tictactoe.api.dataaccess.creators;
 
 namespace tictactoe.api.Controllers
 {
@@ -8,8 +9,8 @@ namespace tictactoe.api.Controllers
     [ApiController]
     public class PlayersController : ControllerBase
     {
-        private readonly IEntityCreator<Player> _creator;
-        public PlayersController(IEntityCreator<Player> creator)
+        private readonly IEntityCreator<Player> _provider;
+        public PlayersController(IEntityCreator<Player> provider)
         {
             _creator = creator;
         }
@@ -17,7 +18,7 @@ namespace tictactoe.api.Controllers
         [HttpPost]
         public JsonResult Post([FromBody] Player player)
         {
-            var responseBody = _creator.CreateEntity(player);
+            var responseBody = _provider.Create(player);
             return new JsonResult(responseBody);
         }
     }

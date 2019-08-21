@@ -1,4 +1,7 @@
+using System.Linq;
+using System.Collections.Generic;
 using tictactoe.api.dataaccess.models;
+using System;
 
 namespace tictactoe.api.dataaccess.creators
 {
@@ -8,13 +11,11 @@ namespace tictactoe.api.dataaccess.creators
         public GameResultsCreator(TictactoeDbContext dbContext)
         {
             _db = dbContext;
-        } 
+        }
 
-        public GameResult CreateEntity(GameResult entity)
+        public GameResult Create(GameResult entity)
         {
-            var GameResult = _db.GameResults.Add(entity);
-            _db.SaveChanges();
-            return GameResult.Entity;
+            return _db.GameResults.Take(10);
         }
     }
 }
